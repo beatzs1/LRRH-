@@ -24,6 +24,7 @@ typedef struct LRRH {
     direction playerDirection;
     bool hasWoodsman;
     bool hasFlower;
+    bool hasBread;
 }LRRH;
 
 
