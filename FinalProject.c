@@ -322,7 +322,15 @@ int main() {
         char actionDecision;
 
         // Game Logic, In this Phase Game will Update
+        switch(savedObject) {
+            case '&':
+                player.hasFlower = true;
+                savedObject = '*';
+                printf("----------------------------------\nYou Picked up Some Flowers!\n----------------------------------\n");
+                break; 
 
+
+        }
 
         // Place Character
         gameArray[player.yPos][player.xPos] = '@';
