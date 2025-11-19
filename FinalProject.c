@@ -326,7 +326,7 @@ int main() {
             case '&':
                 player.hasFlower = true;
                 savedObject = '*';
-                printf("----------------------------------\nYou Picked up Some Flowers!\n----------------------------------\n");
+                printf("----------------------------------\nYou Picked up Some Flowers!\n");
                 break; 
 
 
