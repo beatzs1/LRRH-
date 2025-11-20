@@ -338,7 +338,6 @@ int main() {
             case '_':
                 savedObject = '*';
                 running = false;
-                gameState = 'L';
                 printf("----------------------------------\n\n\nYOU HAVE DIED - You have Fallen into a Pit!\n\n\n----------------------------------\n");
                 break;
 
