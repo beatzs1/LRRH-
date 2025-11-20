@@ -32,6 +32,12 @@ typedef struct LRRH {
     bool hasBread;
 }LRRH;
 
+typedef struct Granny {
+    int xPos;
+    int yPos;
+    int stepsAway;
+}Granny;
+
 
 /*
     This function prints the current state of the game board to the console.
@@ -298,6 +304,7 @@ int main() {
     player.playerDirection = RIGHT;
     player.hasWoodsman = false;
     player.hasFlower = false;
+    player.hasBread = false;
 
     // Place character before asking for object to prevent users placing objects in (1,1)
     gameArray[player.yPos][player.xPos] = player.dirChar;
@@ -313,7 +320,17 @@ int main() {
     askToGenerate("Wolf", 'W', nGameSize, (char*)gameArray, false);
     askToGenerate("Woodsman", 'P', nGameSize, (char*)gameArray, false);
     askToGenerate("Granny", 'G', nGameSize, (char*)gameArray, false);
-    
+
+    // Look for Granny & Save Her Position
+    Granny granny;
+    for (int i = 0;  i<nGameSize; i++) {
+        for(int j=0; j<nGameSize; j++ ) {
+            if(gameArray[i][j] == 'G') {
+                granny.xPos = j;
+                granny.yPos = i;
+            }
+        }
+    }
     // Make Counter Variables
     int numberOfRotates = 0;
     int numberOfMoves = 0;
@@ -374,7 +391,11 @@ int main() {
                 }
                 break;
             case 'P':
-
+                savedObject = '*';
+                player.hasWoodsman = true;
+                granny.stepsAway = abs((player.xPos - granny.xPos) + (player.yPos - granny.yPos));
+                printf("----------------------------------\n\n\nYou encountered the woodsman\nyou asked him for help and agreed, \nhe says that he recalls that granny is %d steps away\n\n\n----------------------------------\n", granny.stepsAway);
+                Sleep(5000);
                 break;
 
         }
@@ -414,7 +435,7 @@ int main() {
             // Display Coordinates
             printf("You are currently at (%d,%d)\n",player.xPos + 1, player.yPos + 1);
             printf("----------------------------------\n");
-            printf("INVENTORY: HasBread: %s\nHasFlower: %s\nWithWoodsman: %s\n", player.hasBread?"true":"false", player.hasFlower?"true":"false",player.hasWoodsman?"true":"false");
+            printf("INVENTORY:\nHasBread: %s\nHasFlower: %s\nWithWoodsman: %s\n", player.hasBread?"true":"false", player.hasFlower?"true":"false",player.hasWoodsman?"true":"false");
             printf("----------------------------------\n");
             printf("ACTIONS:\nw - move forward\nr - rotate\ns - sense\nq - quit\n");
             printf("----------------------------------\n");
