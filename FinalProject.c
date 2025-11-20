@@ -21,6 +21,7 @@ typedef enum direction {
 typedef struct LRRH {
     int xPos;
     int yPos;
+    char dirChar;
     direction playerDirection;
     bool hasWoodsman;
     bool hasFlower;
@@ -173,15 +174,19 @@ void rotate(LRRH *player) {
    switch(player->playerDirection) {
         case RIGHT:
             player->playerDirection = DOWN;
+            player->dirChar = 'v';
             break;
         case DOWN:
             player->playerDirection = LEFT;
+            player->dirChar = '<';
             break;
         case LEFT:
             player->playerDirection = UP;
+            player->dirChar = '^';
             break;
         case UP:
             player->playerDirection = RIGHT;
+            player->dirChar = '>';
             break;
    }
 }
@@ -286,12 +291,13 @@ int main() {
     LRRH player;
     player.xPos = 0;
     player.yPos = 0;
+    player.dirChar = '>';
     player.playerDirection = RIGHT;
     player.hasWoodsman = false;
     player.hasFlower = false;
 
     // Place character before asking for object to prevent users placing objects in (1,1)
-    gameArray[player.yPos][player.xPos] = '@';
+    gameArray[player.yPos][player.xPos] = player.dirChar;
     
 
     // Ask & Generate Objects
@@ -341,7 +347,7 @@ int main() {
 
         if(running == true) {
             // Place Character
-            gameArray[player.yPos][player.xPos] = '@';
+            gameArray[player.yPos][player.xPos] = player.dirChar;
 
             // Print Game Board
             printf("----------------------------------\n");
