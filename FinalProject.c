@@ -361,17 +361,16 @@ int main() {
                 savedObject = '*';
                 running = false;
                 printf("----------------------------------\n\n\nYOU HAVE DIED\nYou have Fallen into a Pit!\n\n\n----------------------------------\n");
-                Sleep(5000);
                 break;
             case 'W':
                 if(player.hasBread == true) {
                     printf("----------------------------------\n\n\nYou encountered the wolf\nthough since you have bread,\nyou fed it to the wolf and he let you pass\n\n\n----------------------------------\n");
                     player.hasBread = false;
+                    Sleep(5000);
                 }else {
                     printf("----------------------------------\n\n\nYOU HAVE DIED\nYou have been eaten by the Wolf!!\n\n\n----------------------------------\n");
                     running = false;
                 }
-                Sleep(5000);
                 break;
             case 'B':
                 player.hasBread = true;
