@@ -107,10 +107,22 @@ void generateObject(int nTableSize, char *gameArray, char object) {
 */
 void askToGenerate(char *type, char object, int nGameSize, char *gameArray, bool multiple) {
     int amount;
-    amount=1;
+    int invalid=0;
+    int limit = nGameSize/2;
+    
+    
+    
     if(multiple == true) {
-        printf("\nHow Many %ss Do You Want in The Game?: ", type);
+        do{
+        	invalid=0;
+        	amount =0;
+        printf("\nHow Many %ss Do You Want in The Game? (1-%d): ", type, limit);
         scanf("%d", &amount);
+        if(amount<=0||amount>limit){
+        	printf("Invalid Amount!");
+        	invalid=1;
+        }
+        }while(invalid==1);
     }else {
         printf("\nCurrently Placing %s.\n", type);
     }
@@ -287,7 +299,7 @@ int main() {
     
     // Make Game Board
     
-    char gameArray[nGameSize][nGameSize] = {};
+    char gameArray[nGameSize][nGameSize];
     for (int i = 0;  i<nGameSize; i++) {
         for(int j=0; j<nGameSize; j++ ) {
             gameArray[i][j] = '*';
@@ -473,3 +485,4 @@ int main() {
 
     return 0;
 }
+
