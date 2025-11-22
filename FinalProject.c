@@ -14,6 +14,7 @@
 #include <stdbool.h>
 #include <windows.h>
 #include <math.h>
+#include <conio.h>
 
 typedef enum direction {
     UP,
@@ -451,7 +452,7 @@ int main() {
             printf("ACTIONS:\nw - move forward\nr - rotate\ns - sense\nq - quit\n");
             printf("----------------------------------\n");
             printf("What Action Do You Want To Take?: ");
-            scanf(" %c", &actionDecision);
+            actionDecision = getch();
 
             switch (actionDecision) {
             case 'w':
